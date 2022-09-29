@@ -18,7 +18,7 @@ function cargarEventListeners() {
     //Vaciar carrito
     vaciarCarritoBtn.addEventListener('click', () => {
         articulosCarrito = [];//resetear arreglo
-        limpiarHTML();//eliminar html
+        limpiarHTML();//eliminar
     })
 }
 
