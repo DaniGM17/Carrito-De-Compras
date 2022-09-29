@@ -52,10 +52,15 @@ function carritoHTML() {
 
     //Recorre carrito
     articulosCarrito.forEach( curso => {
+        const {imagen, titulo, precio, cantidad, id} = curso;
         const row = document.createElement('tr');
         row.innerHTML = `
+            <td><img src="${curso.imagen}" width="100"></td>
+            <td>${curso.titulo}</td>
+            <td>${curso.precio}</td>
+            <td>${curso.cantidad}</td>
             <td>
-                ${curso.titulo}
+                <a href="#" class="borrar-curso" data-id="${curso.id}"> X </a>
             </td>
         `;
 
