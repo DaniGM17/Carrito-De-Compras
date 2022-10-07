@@ -16,6 +16,11 @@ const limpiarHTML = () => {
         contenedor.removeChild(contenedor.firstChild);
     }
 }
+
+function sincronizarStorage(){
+    localStorage.setItem('carrito',JSON.stringify(articulosCarrito));
+}
+
 //Muestra el carrito de compras en html
 const carritoHTML = () => {
     //Limpiar HTML
@@ -37,8 +42,13 @@ const carritoHTML = () => {
 
         //agrega en el HTML del carrito en el body
         contenedor.appendChild(row);
-    })
+    });
+    
+    //sincronizar con localstorage
+    sincronizarStorage();
 }
+
+
 //lee el contenido del html al dar click y extraer inf
 const leeDatosCurso = (curso) => {
     //console.log(curso);
@@ -95,6 +105,12 @@ const cargarEventListeners = () => {
 
     //Elmina cursos
     carrito.addEventListener('click', eliminarCurso);
+    
+    document.addEventListener('DOMContentLoader', ()=>{
+        articulosCarrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        
+        carritoHTML();
+    });
 
     //Vaciar carrito
     vaciarCarritoBtn.addEventListener('click', () => {
